@@ -67,7 +67,7 @@ Router作为一种常用的跳转设计,在项目中使用越来越多,但是三
  */
 - (void)pushViewControllerWithNativeURL:(NSString *)URL withParams:(NSDictionary *)param animated:(BOOL)Yes withBlock:(reverseBlock)block;
 ```
-### 使用
+### 使用 在需要的地方导入TPRouter.h
 1. 首先在appDelegate中指定scheme
 ```
 [[TPRouterConfig tp_routerConfigManager] configSchemeWithScheme:@"tprouter"];
