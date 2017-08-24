@@ -26,13 +26,17 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
 //    [TPRouter pushViewControllerWithNativeURL:@"tprouter://home" withParams:nil animated:YES];
+//    [TPRouter pushViewControllerWithRemoteURL:@"tprouter://home?name=allen&password=123" animated:YES];
     
+//    //指定根的控制器
+//    UINavigationController *root = (UINavigationController *)[[UIApplication sharedApplication].delegate window].rootViewController;
+//    [TPRouterConfig tp_routerConfigManager].rootNavigationController = root;
+//    //指定根的控制器必须使用对象方法
+//    [[TPRouter tp_routerManager] pushViewControllerWithNativeURL:@"tprouter://home?name=allen&password=123" withParams:nil animated:YES];
     
-    //指定根的控制器
-    UINavigationController *root = (UINavigationController *)[[UIApplication sharedApplication].delegate window].rootViewController;
-    [TPRouterConfig tp_routerConfigManager].rootNavigationController = root;
-    //指定根的控制器必须使用对象方法
-    [[TPRouter tp_routerManager] pushViewControllerWithNativeURL:@"tprouter://home" withParams:nil animated:YES];
+    [TPRouter pushViewControllerWithNativeURL:@"tprouter://home" withParams:nil animated:YES withBlock:^(id reverseValue) {
+        NSLog(@"回调的值%@",reverseValue);
+    }];
     
 }
 

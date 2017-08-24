@@ -17,6 +17,7 @@
 		6C1BFAF41F4D28F4003E8BCB /* TPRouterConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C1BFAF31F4D28F4003E8BCB /* TPRouterConfig.plist */; };
 		6C1BFAF71F4D2B0A003E8BCB /* TPRouterConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C1BFAF61F4D2B0A003E8BCB /* TPRouterConfig.m */; };
 		6C1BFAFA1F4D30C2003E8BCB /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C1BFAF91F4D30C2003E8BCB /* HomeViewController.m */; };
+		D791DC931F4E974D00A24A40 /* UIViewController+RouterParams.m in Sources */ = {isa = PBXBuildFile; fileRef = D791DC921F4E974D00A24A40 /* UIViewController+RouterParams.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,8 @@
 		6C1BFAF61F4D2B0A003E8BCB /* TPRouterConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPRouterConfig.m; sourceTree = "<group>"; };
 		6C1BFAF81F4D30C2003E8BCB /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		6C1BFAF91F4D30C2003E8BCB /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		D791DC911F4E974D00A24A40 /* UIViewController+RouterParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RouterParams.h"; sourceTree = "<group>"; };
+		D791DC921F4E974D00A24A40 /* UIViewController+RouterParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RouterParams.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +104,8 @@
 				6C1BFAF31F4D28F4003E8BCB /* TPRouterConfig.plist */,
 				6C1BFAF51F4D2B0A003E8BCB /* TPRouterConfig.h */,
 				6C1BFAF61F4D2B0A003E8BCB /* TPRouterConfig.m */,
+				D791DC911F4E974D00A24A40 /* UIViewController+RouterParams.h */,
+				D791DC921F4E974D00A24A40 /* UIViewController+RouterParams.m */,
 			);
 			path = TPRouterBase;
 			sourceTree = "<group>";
@@ -136,6 +141,7 @@
 				TargetAttributes = {
 					6C1BFAD41F4D278E003E8BCB = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 3P2FWDPYWL;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -177,6 +183,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D791DC931F4E974D00A24A40 /* UIViewController+RouterParams.m in Sources */,
 				6C1BFAE01F4D278E003E8BCB /* ViewController.m in Sources */,
 				6C1BFADD1F4D278E003E8BCB /* AppDelegate.m in Sources */,
 				6C1BFAF71F4D2B0A003E8BCB /* TPRouterConfig.m in Sources */,
@@ -304,6 +311,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 3P2FWDPYWL;
 				INFOPLIST_FILE = TPRouter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = allen.TPRouter;
@@ -315,6 +323,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 3P2FWDPYWL;
 				INFOPLIST_FILE = TPRouter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = allen.TPRouter;
@@ -341,6 +350,7 @@
 				6C1BFAEE1F4D278E003E8BCB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -11,7 +11,7 @@
 NSString *const plistName = @"TPRouterConfig";
 NSString *const WebViewControllerName = @"WebViewControllerName";
 NSString *const NormalViewControllerName = @"NormalViewControllerName";
-
+NSString *const tprouterScheme = @"tprouterScheme";
 
 @implementation TPRouterConfig
 + (instancetype)tp_routerConfigManager{
@@ -68,6 +68,13 @@ NSString *const NormalViewControllerName = @"NormalViewControllerName";
     return root;
 }
 
+- (void)configSchemeWithScheme:(NSString *)scheme{
+    [[NSUserDefaults standardUserDefaults] setObject:scheme forKey:tprouterScheme];
+}
+
+- (NSString *)hasScheme{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:tprouterScheme];
+}
 
 
 @end

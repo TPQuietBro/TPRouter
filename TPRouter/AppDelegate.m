@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
-
+#import "TPRouter.h"
 @interface AppDelegate ()
 
 @end
@@ -25,6 +25,8 @@
     self.window.rootViewController = nav;
     
     [self.window makeKeyAndVisible];
+    
+    [[TPRouterConfig tp_routerConfigManager] configSchemeWithScheme:@"tprouter"];
     
     return YES;
 }
