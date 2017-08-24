@@ -42,6 +42,14 @@
     //编码
     url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     //控制器对应的key
+    NSString *controllerKey = [self controllerKey:url];
+    
+    UIViewController *controller = [self targetControllerPropertyWithControllerKey:controllerKey url:url withParam:param withBlock:block];
+    
+    [RootViewController pushViewController:controller animated:Yes];
+}
+
++ (NSString *)controllerKey:(NSString *)url{
     NSString *controllerKey = nil;
     
     if ([url hasPrefix:@"http"] || [url hasPrefix:@"https"]) {
@@ -55,8 +63,13 @@
         }
         controllerKey = [self hostUrl:url];
     }
+    return controllerKey;
+}
+
++ (UIViewController *)targetControllerPropertyWithControllerKey:(NSString *)controllerKey  url:(NSString *)url withParam:(NSDictionary *)param withBlock:(reverseBlock)block{
     
     UIViewController *controller = (UIViewController *)[tprouterConfig controllerWithURL:controllerKey];
+    
     //判断是native还是remote
     if ([url hasPrefix:[tprouterConfig hasScheme]]) {
         
@@ -76,9 +89,7 @@
     if (block) {
         controller.callBackBlock = block;
     }
-    
-    
-    [RootViewController pushViewController:controller animated:Yes];
+    return controller;
 }
 
 + (NSDictionary *)paramsFromRemoteURL:(NSString *)URL{
@@ -126,6 +137,15 @@
     
     url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     
+    //控制器对应的key
+    NSString *controllerKey = [self controllerKey:url];
+    
+    UIViewController *controller = [self targetControllerPropertyWithControllerKey:controllerKey url:url withParam:param withBlock:block];
+    
+    [RootViewController pushViewController:controller animated:Yes];
+}
+
+- (NSString *)controllerKey:(NSString *)url{
     NSString *controllerKey = nil;
     
     if ([url hasPrefix:@"http"] || [url hasPrefix:@"https"]) {
@@ -139,10 +159,16 @@
         }
         controllerKey = [self hostUrl:url];
     }
+    return controllerKey;
+}
+
+- (UIViewController *)targetControllerPropertyWithControllerKey:(NSString *)controllerKey  url:(NSString *)url withParam:(NSDictionary *)param withBlock:(reverseBlock)block{
     
     UIViewController *controller = (UIViewController *)[tprouterConfig controllerWithURL:controllerKey];
     
+    //判断是native还是remote
     if ([url hasPrefix:[tprouterConfig hasScheme]]) {
+        
         NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:param];
         controller.routerParams = params;
         //如果是本地的url中包含了参数
@@ -159,8 +185,7 @@
     if (block) {
         controller.callBackBlock = block;
     }
-    
-    [RootViewController pushViewController:controller animated:Yes];
+    return controller;
 }
 
 - (NSDictionary *)paramsFromRemoteURL:(NSString *)URL{
