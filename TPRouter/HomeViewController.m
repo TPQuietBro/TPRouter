@@ -19,7 +19,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"主页";
-    NSLog(@"参数是%@",self.routerParams);
+    NSLog(@"传入的参数是%@,传入的url是:%@",self.routerParams,self.tp_remoteURL);
     
 }
 

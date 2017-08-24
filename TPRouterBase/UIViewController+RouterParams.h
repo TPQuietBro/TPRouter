@@ -13,4 +13,5 @@ typedef void(^reverseBlock)(id reverseValue);
 @interface UIViewController (RouterParams)
 @property (nonatomic,strong) NSDictionary *routerParams;
 @property (nonatomic,strong) reverseBlock callBackBlock;
+@property (nonatomic,strong) NSURL *tp_remoteURL;
 @end

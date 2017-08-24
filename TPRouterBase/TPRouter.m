@@ -39,30 +39,50 @@
 + (void)pushViewControllerWithURL:(NSString *)URL andParam:(NSDictionary *)param andBlock:(reverseBlock)block andAnimated:(BOOL)Yes{
     //去除空格
     NSString *url = [URL stringByReplacingOccurrencesOfString:@" " withString:@""];
+    //编码
+    url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    //控制器对应的key
+    NSString *controllerKey = nil;
     
-    BOOL hasScheme = [tprouterConfig hasScheme] && [[tprouterConfig hasScheme] isEqualToString:[self scheme:url]];
-    
-    if (!hasScheme) {
-        NSException *exception = [NSException exceptionWithName:@"no such scheme" reason:@"please set right scheme" userInfo:nil];
-        @throw exception;
+    if ([url hasPrefix:@"http"] || [url hasPrefix:@"https"]) {
+        controllerKey = [self scheme:url];
+    }else {
+        BOOL hasScheme = [tprouterConfig hasScheme] && [[tprouterConfig hasScheme] isEqualToString:[self scheme:url]];
+        
+        if (!hasScheme) {
+            NSException *exception = [NSException exceptionWithName:@"no such scheme" reason:@"please set right scheme" userInfo:nil];
+            @throw exception;
+        }
+        controllerKey = [self hostUrl:url];
     }
     
-    UIViewController *controller = (UIViewController *)[tprouterConfig controllerWithURL:[self hostUrl:url]];
+    UIViewController *controller = (UIViewController *)[tprouterConfig controllerWithURL:controllerKey];
     //判断是native还是remote
-    if (param) {
-        controller.routerParams = param;
-    }else{
+    if ([url hasPrefix:[tprouterConfig hasScheme]]) {
+        
+        NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:param];
+        controller.routerParams = params;
+        //如果是本地的url中包含了参数
+        if ([self paramsFromRemoteURL:url]){
+            [params addEntriesFromDictionary:[self paramsFromRemoteURL:url]];
+            controller.routerParams = params;
+        }
+    }else if ([url hasPrefix:@"http"] || [url hasPrefix:@"https"]){
         controller.routerParams = [self paramsFromRemoteURL:url];
+        //传入远端的url
+        controller.tp_remoteURL = [NSURL URLWithString:url];
     }
     //是否有block
     if (block) {
         controller.callBackBlock = block;
     }
     
+    
     [RootViewController pushViewController:controller animated:Yes];
 }
 
 + (NSDictionary *)paramsFromRemoteURL:(NSString *)URL{
+
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     NSString *paramString = [[NSURL URLWithString:URL] query];
     NSArray *paramArray = [paramString componentsSeparatedByString:@"&"];
@@ -104,17 +124,36 @@
     
     NSString *url = [URL stringByReplacingOccurrencesOfString:@" " withString:@""];
     
-    BOOL hasScheme = [tprouterConfig hasScheme] && [[tprouterConfig hasScheme] isEqualToString:[self scheme:url]];
-    if (!hasScheme) {
-        NSException *exception = [NSException exceptionWithName:@"no such scheme" reason:@"please set right scheme" userInfo:nil];
-        @throw exception;
+    url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    
+    NSString *controllerKey = nil;
+    
+    if ([url hasPrefix:@"http"] || [url hasPrefix:@"https"]) {
+        controllerKey = [self scheme:url];
+    }else {
+        BOOL hasScheme = [tprouterConfig hasScheme] && [[tprouterConfig hasScheme] isEqualToString:[self scheme:url]];
+        
+        if (!hasScheme) {
+            NSException *exception = [NSException exceptionWithName:@"no such scheme" reason:@"please set right scheme" userInfo:nil];
+            @throw exception;
+        }
+        controllerKey = [self hostUrl:url];
     }
     
-    UIViewController *controller = (UIViewController *)[tprouterConfig controllerWithURL:[self hostUrl:url]];
-    if (param) {
-        controller.routerParams = param;
-    }else{
+    UIViewController *controller = (UIViewController *)[tprouterConfig controllerWithURL:controllerKey];
+    
+    if ([url hasPrefix:[tprouterConfig hasScheme]]) {
+        NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:param];
+        controller.routerParams = params;
+        //如果是本地的url中包含了参数
+        if ([self paramsFromRemoteURL:url]){
+            [params addEntriesFromDictionary:[self paramsFromRemoteURL:url]];
+            controller.routerParams = params;
+        }
+    }else if ([url hasPrefix:@"http"] || [url hasPrefix:@"https"]){
         controller.routerParams = [self paramsFromRemoteURL:url];
+        //传入远端的url
+        controller.tp_remoteURL = [NSURL URLWithString:url];
     }
     //是否有block
     if (block) {
@@ -125,6 +164,7 @@
 }
 
 - (NSDictionary *)paramsFromRemoteURL:(NSString *)URL{
+
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     NSString *paramString = [[NSURL URLWithString:URL] query];
     NSArray *paramArray = [paramString componentsSeparatedByString:@"&"];
@@ -141,10 +181,12 @@
 }
 
 - (NSString *)scheme:(NSString *)url{
+    
     return [NSURL URLWithString:url].scheme;
 }
 
 - (NSString *)host:(NSString *)url{
+    
     return [NSURL URLWithString:url].host;
 }
 

@@ -11,6 +11,8 @@
 
 static char *routerParamsKey = "routerParamsKey";
 static char *reverseBlockKey = "reverseBlockKey";
+static char *tp_remoteURLKey = "tp_remoteURL";
+
 
 
 @implementation UIViewController (RouterParams)
@@ -30,6 +32,14 @@ static char *reverseBlockKey = "reverseBlockKey";
 - (void)setCallBackBlock:(reverseBlock)callBackBlock{
     objc_setAssociatedObject(self, reverseBlockKey, callBackBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
     
+}
+
+- (NSURL *)tp_remoteURL{
+    return objc_getAssociatedObject(self, tp_remoteURLKey);
+}
+
+- (void)setTp_remoteURL:(NSURL *)tp_remoteURL{
+    objc_setAssociatedObject(self, tp_remoteURLKey, tp_remoteURL, OBJC_ASSOCIATION_RETAIN);
 }
 
 @end

@@ -9,9 +9,9 @@
 	</dict>
 	<key>WebViewControllerName</key>
 	<dict>
-		<key>http://webView</key>
+		<key>http</key>
 		<string>WebViewControllerHttp</string>
-		<key>https://webView</key>
+		<key>https</key>
 		<string>WebViewControllerHttps</string>
 	</dict>
 </dict>

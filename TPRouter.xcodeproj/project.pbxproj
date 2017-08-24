@@ -18,6 +18,7 @@
 		6C1BFAF71F4D2B0A003E8BCB /* TPRouterConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C1BFAF61F4D2B0A003E8BCB /* TPRouterConfig.m */; };
 		6C1BFAFA1F4D30C2003E8BCB /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C1BFAF91F4D30C2003E8BCB /* HomeViewController.m */; };
 		D791DC931F4E974D00A24A40 /* UIViewController+RouterParams.m in Sources */ = {isa = PBXBuildFile; fileRef = D791DC921F4E974D00A24A40 /* UIViewController+RouterParams.m */; };
+		D791DC961F4EADA000A24A40 /* WebViewControllerHttps.m in Sources */ = {isa = PBXBuildFile; fileRef = D791DC951F4EADA000A24A40 /* WebViewControllerHttps.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,8 @@
 		6C1BFAF91F4D30C2003E8BCB /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		D791DC911F4E974D00A24A40 /* UIViewController+RouterParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RouterParams.h"; sourceTree = "<group>"; };
 		D791DC921F4E974D00A24A40 /* UIViewController+RouterParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RouterParams.m"; sourceTree = "<group>"; };
+		D791DC941F4EADA000A24A40 /* WebViewControllerHttps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewControllerHttps.h; sourceTree = "<group>"; };
+		D791DC951F4EADA000A24A40 /* WebViewControllerHttps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewControllerHttps.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +87,8 @@
 				6C1BFAD81F4D278E003E8BCB /* Supporting Files */,
 				6C1BFAF81F4D30C2003E8BCB /* HomeViewController.h */,
 				6C1BFAF91F4D30C2003E8BCB /* HomeViewController.m */,
+				D791DC941F4EADA000A24A40 /* WebViewControllerHttps.h */,
+				D791DC951F4EADA000A24A40 /* WebViewControllerHttps.m */,
 			);
 			path = TPRouter;
 			sourceTree = "<group>";
@@ -186,6 +191,7 @@
 				D791DC931F4E974D00A24A40 /* UIViewController+RouterParams.m in Sources */,
 				6C1BFAE01F4D278E003E8BCB /* ViewController.m in Sources */,
 				6C1BFADD1F4D278E003E8BCB /* AppDelegate.m in Sources */,
+				D791DC961F4EADA000A24A40 /* WebViewControllerHttps.m in Sources */,
 				6C1BFAF71F4D2B0A003E8BCB /* TPRouterConfig.m in Sources */,
 				6C1BFAF21F4D27D6003E8BCB /* TPRouter.m in Sources */,
 				6C1BFADA1F4D278E003E8BCB /* main.m in Sources */,
