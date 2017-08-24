@@ -25,12 +25,14 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-//    [TPRouter pushViewControllerWithURL:@"tprouter://home" withParams:nil animated:YES];
+//    [TPRouter pushViewControllerWithNativeURL:@"tprouter://home" withParams:nil animated:YES];
     
+    
+    //指定根的控制器
     UINavigationController *root = (UINavigationController *)[[UIApplication sharedApplication].delegate window].rootViewController;
-    [TPRouter tp_routerManager].rootNavigationController = root;
+    [TPRouterConfig tp_routerConfigManager].rootNavigationController = root;
     //指定根的控制器必须使用对象方法
-    [[TPRouter tp_routerManager] pushViewControllerWithURL:@"tprouter://home" withParams:nil animated:YES];
+    [[TPRouter tp_routerManager] pushViewControllerWithNativeURL:@"tprouter://home" withParams:nil animated:YES];
     
 }
 

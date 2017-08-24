@@ -52,7 +52,18 @@ NSString *const NormalViewControllerName = @"NormalViewControllerName";
     return path;
 }
 
+- (void)setRootNavigationController:(UINavigationController *)rootNavigationController{
+    if (![rootNavigationController isKindOfClass:[UINavigationController class]]) {
+        NSException *exception = [NSException exceptionWithName:@"no such UINavigationController" reason:@"the type is not UINavigationController" userInfo:nil];
+        @throw exception;
+    }
+    _rootNavigationController = rootNavigationController;
+}
+
 - (UINavigationController *)rootViewController{
+    if (_rootNavigationController) {
+        return _rootNavigationController;
+    }
     UINavigationController *root = (UINavigationController *)[[UIApplication sharedApplication].delegate window].rootViewController;
     return root;
 }

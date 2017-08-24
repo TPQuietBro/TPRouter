@@ -11,6 +11,7 @@
 #define RootViewController [[TPRouterConfig tp_routerConfigManager] rootViewController]
 
 @implementation TPRouter
+#pragma mark - class methods
 
 + (instancetype)tp_routerManager{
     static TPRouter *manager = nil;
@@ -21,31 +22,33 @@
     return manager;
 }
 
-+ (void)pushViewControllerWithURL:(NSString *)URL withParams:(NSDictionary *)param animated:(BOOL)Yes{
++ (void)pushViewControllerWithNativeURL:(NSString *)URL withParams:(NSDictionary *)param animated:(BOOL)Yes{
+    [self pushViewControllerWithURL:URL andParam:param andAnimated:YES];
+}
+
++ (void)pushViewControllerWithRemoteURL:(NSString *)URL animated:(BOOL)Yes{
+    [self pushViewControllerWithURL:URL andParam:nil andAnimated:YES];
+}
+
++ (void)pushViewControllerWithURL:(NSString *)URL andParam:(NSDictionary *)param andAnimated:(BOOL)Yes{
     UIViewController *controller = (UIViewController *)[[TPRouterConfig tp_routerConfigManager] controllerWithURL:URL];
-    
     [RootViewController pushViewController:controller animated:Yes];
 }
 
-- (void)setRootNavigationController:(UINavigationController *)rootNavigationController{
-    if (![rootNavigationController isKindOfClass:[UINavigationController class]]) {
-        NSException *exception = [NSException exceptionWithName:@"no such UINavigationController" reason:@"the type is not UINavigationController" userInfo:nil];
-        @throw exception;
-    }
-    _rootNavigationController = rootNavigationController;
+#pragma mark - instance methods
+
+- (void)pushViewControllerWithNativeURL:(NSString *)URL withParams:(NSDictionary *)param animated:(BOOL)Yes{
+    [self pushViewControllerWithURL:URL andParam:param andAnimated:YES];
 }
 
-- (void)pushViewControllerWithURL:(NSString *)URL withParams:(NSDictionary *)param animated:(BOOL)Yes{
+- (void)pushViewControllerWithRemoteURL:(NSString *)URL animated:(BOOL)Yes{
+    [self pushViewControllerWithURL:URL andParam:nil andAnimated:YES];
+}
+
+- (void)pushViewControllerWithURL:(NSString *)URL andParam:(NSDictionary *)param andAnimated:(BOOL)Yes{
     UIViewController *controller = (UIViewController *)[[TPRouterConfig tp_routerConfigManager] controllerWithURL:URL];
     
     [RootViewController pushViewController:controller animated:Yes];
-}
-
-- (UINavigationController *)rootViewController{
-    if (_rootNavigationController) {
-        return _rootNavigationController;
-    }
-    return RootViewController;
 }
 
 @end

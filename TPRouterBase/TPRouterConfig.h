@@ -10,6 +10,11 @@
 
 @interface TPRouterConfig : NSObject
 
+/**
+ *  用户可以自定义根的UINavigationController
+ */
+@property (nonatomic, strong) UINavigationController *rootNavigationController;
+
 + (instancetype)tp_routerConfigManager;
 
 - (UIViewController *)controllerWithURL:(NSString *)URL;
