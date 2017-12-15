@@ -41,6 +41,7 @@
     NSString *url = [URL stringByReplacingOccurrencesOfString:@" " withString:@""];
     //编码
     url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    
     //控制器对应的key
     NSString *controllerKey = [self controllerKey:url];
     
@@ -100,7 +101,16 @@
     for (NSString *param in paramArray) {
         NSArray *elts = [param componentsSeparatedByString:@"="];
         if([elts count] < 2) continue;
-        [params setObject:[elts lastObject] forKey:[elts firstObject]];
+        NSString *key = elts.firstObject;
+        NSString *value = elts.lastObject;
+        //url会将中文转成带%的乱码,这里需要将中文乱码再转成中文
+        if ([key containsString:@"%"]) {
+            key = [key stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        }
+        if ([value containsString:@"%"]) {
+            value = [value stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        }
+        [params setObject:value forKey:key];
     }
     return params;
 }
@@ -136,7 +146,6 @@
     NSString *url = [URL stringByReplacingOccurrencesOfString:@" " withString:@""];
     
     url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-    
     //控制器对应的key
     NSString *controllerKey = [self controllerKey:url];
     
@@ -196,7 +205,16 @@
     for (NSString *param in paramArray) {
         NSArray *elts = [param componentsSeparatedByString:@"="];
         if([elts count] < 2) continue;
-        [params setObject:[elts lastObject] forKey:[elts firstObject]];
+        NSString *key = elts.firstObject;
+        NSString *value = elts.lastObject;
+        //url会将中文转成带%的乱码,这里需要将中文乱码再转成中文
+        if ([key containsString:@"%"]) {
+            key = [key stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        }
+        if ([value containsString:@"%"]) {
+            value = [value stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        }
+        [params setObject:value forKey:key];
     }
     return params;
 }

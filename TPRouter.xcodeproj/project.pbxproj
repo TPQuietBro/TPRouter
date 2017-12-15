@@ -22,6 +22,7 @@
 		D792E5051FE4169900B21586 /* SubVc_1.m in Sources */ = {isa = PBXBuildFile; fileRef = D792E5041FE4169900B21586 /* SubVc_1.m */; };
 		D792E5081FE416A300B21586 /* SubVc_2.m in Sources */ = {isa = PBXBuildFile; fileRef = D792E5071FE416A300B21586 /* SubVc_2.m */; };
 		D792E50B1FE41A9400B21586 /* TestSuperVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D792E50A1FE41A9400B21586 /* TestSuperVC.m */; };
+		D792E50D1FE422C500B21586 /* Foundation+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = D792E50C1FE422C500B21586 /* Foundation+Log.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		D792E5071FE416A300B21586 /* SubVc_2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SubVc_2.m; sourceTree = "<group>"; };
 		D792E5091FE41A9400B21586 /* TestSuperVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestSuperVC.h; sourceTree = "<group>"; };
 		D792E50A1FE41A9400B21586 /* TestSuperVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestSuperVC.m; sourceTree = "<group>"; };
+		D792E50C1FE422C500B21586 /* Foundation+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Foundation+Log.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 		6C1BFACC1F4D278D003E8BCB = {
 			isa = PBXGroup;
 			children = (
+				D792E50C1FE422C500B21586 /* Foundation+Log.m */,
 				6C1BFAEF1F4D27C4003E8BCB /* TPRouterBase */,
 				6C1BFAD71F4D278E003E8BCB /* TPRouter */,
 				6C1BFAD61F4D278E003E8BCB /* Products */,
@@ -214,6 +217,7 @@
 				D792E50B1FE41A9400B21586 /* TestSuperVC.m in Sources */,
 				6C1BFAFA1F4D30C2003E8BCB /* HomeViewController.m in Sources */,
 				D792E5051FE4169900B21586 /* SubVc_1.m in Sources */,
+				D792E50D1FE422C500B21586 /* Foundation+Log.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +341,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3P2FWDPYWL;
 				INFOPLIST_FILE = TPRouter/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = allen.TPRouter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -349,6 +354,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3P2FWDPYWL;
 				INFOPLIST_FILE = TPRouter/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = allen.TPRouter;
 				PRODUCT_NAME = "$(TARGET_NAME)";

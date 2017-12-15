@@ -18,7 +18,7 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     
-    [TPRouter pushViewControllerWithNativeURL:@"tprouter://home?name=allen" withParams:@{@"age" : @"27"} animated:YES];
+    [TPRouter pushViewControllerWithNativeURL:@"tprouter://home?姓名=唐鹏" withParams:@{@"age" : @"27"} animated:YES];
     
     //    [TPRouter pushViewControllerWithRemoteURL:@"https://www.baidu.com" animated:YES];
     
