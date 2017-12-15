@@ -10,7 +10,7 @@ Router作为一种常用的跳转设计,在项目中使用越来越多,但是三
 
 ### 方法
 
-* 方法一:使用静态方法直接调用(这时默认的根控制器是UINavigationController,不能指定根控制器)
+* 方法一:使用静态方法直接调用(这时默认获取根控制器是从UINavigationController,UITabBarController(子控制器是UINavigationController),以及包含了UITabBarController(其中必须有UINavigationController)的UIViewController)
 
 ```
 /**
