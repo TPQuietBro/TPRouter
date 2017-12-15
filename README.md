@@ -1,5 +1,11 @@
 # TPRouter 一种中间Router设计
 
+## 更新
+新增中文支持,url中可以添加中文参数,这么做是为了预防服务器返回中文url的情况.**不推荐的**.
+```
+[TPRouter pushViewControllerWithNativeURL:@"tprouter://home?姓名=唐鹏" withParams:@{@"age" : @"27"} animated:YES];
+```
+
 ## 设计由来
 Router作为一种常用的跳转设计,在项目中使用越来越多,但是三方库对于项目的压力通常是比较大的,因为有很多功能可能我们根本就用不到,就造成了项目空间的浪费.所以自己结合使用的经验设计了这样一个Router来帮助跳转.
 
