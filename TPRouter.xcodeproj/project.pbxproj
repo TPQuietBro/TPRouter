@@ -19,6 +19,9 @@
 		6C1BFAFA1F4D30C2003E8BCB /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C1BFAF91F4D30C2003E8BCB /* HomeViewController.m */; };
 		D791DC931F4E974D00A24A40 /* UIViewController+RouterParams.m in Sources */ = {isa = PBXBuildFile; fileRef = D791DC921F4E974D00A24A40 /* UIViewController+RouterParams.m */; };
 		D791DC961F4EADA000A24A40 /* WebViewControllerHttps.m in Sources */ = {isa = PBXBuildFile; fileRef = D791DC951F4EADA000A24A40 /* WebViewControllerHttps.m */; };
+		D792E5051FE4169900B21586 /* SubVc_1.m in Sources */ = {isa = PBXBuildFile; fileRef = D792E5041FE4169900B21586 /* SubVc_1.m */; };
+		D792E5081FE416A300B21586 /* SubVc_2.m in Sources */ = {isa = PBXBuildFile; fileRef = D792E5071FE416A300B21586 /* SubVc_2.m */; };
+		D792E50B1FE41A9400B21586 /* TestSuperVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D792E50A1FE41A9400B21586 /* TestSuperVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +46,12 @@
 		D791DC921F4E974D00A24A40 /* UIViewController+RouterParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RouterParams.m"; sourceTree = "<group>"; };
 		D791DC941F4EADA000A24A40 /* WebViewControllerHttps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewControllerHttps.h; sourceTree = "<group>"; };
 		D791DC951F4EADA000A24A40 /* WebViewControllerHttps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewControllerHttps.m; sourceTree = "<group>"; };
+		D792E5031FE4169900B21586 /* SubVc_1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SubVc_1.h; sourceTree = "<group>"; };
+		D792E5041FE4169900B21586 /* SubVc_1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SubVc_1.m; sourceTree = "<group>"; };
+		D792E5061FE416A300B21586 /* SubVc_2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SubVc_2.h; sourceTree = "<group>"; };
+		D792E5071FE416A300B21586 /* SubVc_2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SubVc_2.m; sourceTree = "<group>"; };
+		D792E5091FE41A9400B21586 /* TestSuperVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestSuperVC.h; sourceTree = "<group>"; };
+		D792E50A1FE41A9400B21586 /* TestSuperVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestSuperVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +89,12 @@
 				6C1BFADC1F4D278E003E8BCB /* AppDelegate.m */,
 				6C1BFADE1F4D278E003E8BCB /* ViewController.h */,
 				6C1BFADF1F4D278E003E8BCB /* ViewController.m */,
+				D792E5031FE4169900B21586 /* SubVc_1.h */,
+				D792E5041FE4169900B21586 /* SubVc_1.m */,
+				D792E5061FE416A300B21586 /* SubVc_2.h */,
+				D792E5071FE416A300B21586 /* SubVc_2.m */,
+				D792E5091FE41A9400B21586 /* TestSuperVC.h */,
+				D792E50A1FE41A9400B21586 /* TestSuperVC.m */,
 				6C1BFAE11F4D278E003E8BCB /* Main.storyboard */,
 				6C1BFAE41F4D278E003E8BCB /* Assets.xcassets */,
 				6C1BFAE61F4D278E003E8BCB /* LaunchScreen.storyboard */,
@@ -192,10 +207,13 @@
 				6C1BFAE01F4D278E003E8BCB /* ViewController.m in Sources */,
 				6C1BFADD1F4D278E003E8BCB /* AppDelegate.m in Sources */,
 				D791DC961F4EADA000A24A40 /* WebViewControllerHttps.m in Sources */,
+				D792E5081FE416A300B21586 /* SubVc_2.m in Sources */,
 				6C1BFAF71F4D2B0A003E8BCB /* TPRouterConfig.m in Sources */,
 				6C1BFAF21F4D27D6003E8BCB /* TPRouter.m in Sources */,
 				6C1BFADA1F4D278E003E8BCB /* main.m in Sources */,
+				D792E50B1FE41A9400B21586 /* TestSuperVC.m in Sources */,
 				6C1BFAFA1F4D30C2003E8BCB /* HomeViewController.m in Sources */,
+				D792E5051FE4169900B21586 /* SubVc_1.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

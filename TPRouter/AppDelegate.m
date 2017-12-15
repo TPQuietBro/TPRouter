@@ -9,6 +9,9 @@
 #import "AppDelegate.h"
 #import "ViewController.h"
 #import "TPRouter.h"
+#import "SubVc_1.h"
+#import "SubVc_2.h"
+#import "TestSuperVC.h"
 @interface AppDelegate ()
 
 @end
@@ -20,9 +23,22 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[ViewController alloc] init]];
+    UITabBarController *vc = [[UITabBarController alloc] init];
     
-    self.window.rootViewController = nav;
+    SubVc_1 *vc1 = [[SubVc_1 alloc] init];
+    UINavigationController *nav1 = [[UINavigationController alloc] initWithRootViewController:vc1];
+    
+    SubVc_2 *vc2 = [[SubVc_2 alloc] init];
+    UINavigationController *nav2 = [[UINavigationController alloc] initWithRootViewController:vc2];
+    [vc addChildViewController:nav1];
+    [vc addChildViewController:nav2];
+    
+//    TestSuperVC *superVc = [[TestSuperVC alloc] init];
+//    UINavigationController *nav3 = [[UINavigationController alloc] initWithRootViewController:superVc];
+//
+//    [superVc addChildViewController:vc];
+    
+    self.window.rootViewController = vc;
     
     [self.window makeKeyAndVisible];
     

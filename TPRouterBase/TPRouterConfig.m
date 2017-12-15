@@ -64,8 +64,35 @@ NSString *const tprouterScheme = @"tprouterScheme";
     if (_rootNavigationController) {
         return _rootNavigationController;
     }
-    UINavigationController *root = (UINavigationController *)[[UIApplication sharedApplication].delegate window].rootViewController;
-    return root;
+    id root = [[UIApplication sharedApplication].delegate window].rootViewController;
+    //如果是navigationController
+    if ([root isKindOfClass:[UINavigationController class]]) {
+        return root;
+    }else if ([root isKindOfClass:[UITabBarController class]]){
+        //如果是tabbarVc
+        UITabBarController *rootVc = root;
+        UINavigationController *nav = [[UINavigationController alloc] init];
+        if (rootVc.childViewControllers.count > 0) {
+            nav = rootVc.childViewControllers.firstObject;
+        }
+        return nav;
+    }else{
+        //如果根控制器是个UIViewController
+        UIViewController *rootVc = root;
+        UITabBarController *subTabVc = [[UITabBarController alloc] init];
+        UINavigationController *rootNav = nil;
+        for (id subVc in rootVc.childViewControllers) {
+            if ([subVc isKindOfClass:[UITabBarController class]]) {
+                subTabVc = subVc;
+                if (subTabVc.childViewControllers.count > 0) {
+                    rootNav = subTabVc.childViewControllers.firstObject;
+                }
+                break;
+            }
+        }
+        rootNav ? NSLog(@"找到根控制器") : NSLog(@"没有找到根控制器");
+        return rootNav ? rootNav : [[UINavigationController alloc] init];
+    }
 }
 
 - (void)configSchemeWithScheme:(NSString *)scheme{
