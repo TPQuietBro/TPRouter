@@ -71,19 +71,23 @@ NSString *const tprouterScheme = @"tprouterScheme";
     }else if ([root isKindOfClass:[UITabBarController class]]){
         //如果是tabbarVc
         UITabBarController *rootVc = root;
-        UINavigationController *nav = [[UINavigationController alloc] init];
+        UINavigationController *nav = nil;
         if (rootVc.childViewControllers.count > 0) {
             nav = rootVc.childViewControllers.firstObject;
         }
-        return nav;
+        nav ? NSLog(@"找到根控制器") : NSLog(@"没有找到根控制器");
+        return nav ? nav : [[UINavigationController alloc] init];
     }else{
         //如果根控制器是个UIViewController
         UIViewController *rootVc = root;
+        
         UITabBarController *subTabVc = [[UITabBarController alloc] init];
         UINavigationController *rootNav = nil;
         for (id subVc in rootVc.childViewControllers) {
+            //如果有一个子控制器是tabbarvc
             if ([subVc isKindOfClass:[UITabBarController class]]) {
                 subTabVc = subVc;
+                //并且里面有UINavigationController为子控制器
                 if (subTabVc.childViewControllers.count > 0) {
                     rootNav = subTabVc.childViewControllers.firstObject;
                 }
