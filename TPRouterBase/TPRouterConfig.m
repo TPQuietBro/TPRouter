@@ -24,10 +24,17 @@ NSString *const tprouterScheme = @"tprouterScheme";
 }
 
 - (UIViewController *)controllerWithURL:(NSString *)URL{
-    UIViewController *controller = (UIViewController *)[[NSClassFromString([self controllerNameWithURL:URL]) alloc] init];
+
+    NSString *controllerName = [self controllerNameWithURL:URL];
+    UIViewController *controller = (UIViewController *)[[NSClassFromString(controllerName) alloc] init];
     if (!controller) {
+#ifdef debug
         NSException *exception = [NSException exceptionWithName:@"no such UIViewController" reason:@"UIViewController not exist" userInfo:nil];
         @throw exception;
+#else
+        NSLog(@"no such UIViewController");
+        return [UIViewController new];
+#endif
     }
     return controller;
 }
@@ -41,8 +48,12 @@ NSString *const tprouterScheme = @"tprouterScheme";
         controllerName = nameDict[NormalViewControllerName][URL];
     }
     if (!controllerName) {
+#ifdef debug
         NSException *exception = [NSException exceptionWithName:@"null controller name" reason:@"the controller name is not right" userInfo:nil];
         @throw exception;
+#else
+        NSLog(@"null controller name");
+#endif
     }
     return controllerName;
 }
@@ -54,8 +65,14 @@ NSString *const tprouterScheme = @"tprouterScheme";
 
 - (void)setRootNavigationController:(UINavigationController *)rootNavigationController{
     if (![rootNavigationController isKindOfClass:[UINavigationController class]]) {
+#ifdef debug
         NSException *exception = [NSException exceptionWithName:@"no such UINavigationController" reason:@"the type is not UINavigationController" userInfo:nil];
         @throw exception;
+#else
+        NSLog(@"no such UINavigationController");
+        _rootNavigationController = [UINavigationController new];
+        return;
+#endif
     }
     _rootNavigationController = rootNavigationController;
 }
@@ -75,7 +92,6 @@ NSString *const tprouterScheme = @"tprouterScheme";
         if (rootVc.childViewControllers.count > 0) {
             nav = rootVc.childViewControllers.firstObject;
         }
-        nav ? NSLog(@"找到根控制器") : NSLog(@"没有找到根控制器");
         return nav ? nav : [[UINavigationController alloc] init];
     }else{
         //如果根控制器是个UIViewController
@@ -89,12 +105,11 @@ NSString *const tprouterScheme = @"tprouterScheme";
                 subTabVc = subVc;
                 //并且里面有UINavigationController为子控制器
                 if (subTabVc.childViewControllers.count > 0) {
-                    rootNav = subTabVc.childViewControllers.firstObject;
+                    rootNav = subTabVc.childViewControllers[subTabVc.selectedIndex];
                 }
                 break;
             }
         }
-        rootNav ? NSLog(@"找到根控制器") : NSLog(@"没有找到根控制器");
         return rootNav ? rootNav : [[UINavigationController alloc] init];
     }
 }

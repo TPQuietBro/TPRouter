@@ -36,11 +36,37 @@
     [self pushViewControllerWithURL:URL andParam:param andBlock:block andAnimated:Yes];
 }
 
-+ (void)pushViewControllerWithURL:(NSString *)URL andParam:(NSDictionary *)param andBlock:(reverseBlock)block andAnimated:(BOOL)Yes{
++ (void)presentViewControllerWithRemoteURL:(NSString *)URL animated:(BOOL)Yes{
+    [self presentViewControllerWithURL:URL andParam:nil andBlock:nil andAnimated:Yes];
+}
+
++ (void)presentViewControllerWithURL:(NSString *)URL andParam:(NSDictionary *)param andBlock:(reverseBlock)block andAnimated:(BOOL)Yes{
+    if (!URL) {
+        NSLog(@"url为空");
+        return;
+    }
     //去除空格
     NSString *url = [URL stringByReplacingOccurrencesOfString:@" " withString:@""];
     //编码
-    url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    url = [url stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    //控制器对应的key
+    NSString *controllerKey = [self controllerKey:url];
+    
+    UIViewController *controller = [self targetControllerPropertyWithControllerKey:controllerKey url:url withParam:param withBlock:block];
+    
+    [RootViewController presentViewController:controller animated:Yes completion:nil];
+}
+
++ (void)pushViewControllerWithURL:(NSString *)URL andParam:(NSDictionary *)param andBlock:(reverseBlock)block andAnimated:(BOOL)Yes{
+    if (!URL) {
+        NSLog(@"url为空");
+        return;
+    }
+    //去除空格
+    NSString *url = [URL stringByReplacingOccurrencesOfString:@" " withString:@""];
+    //编码
+    url = [url stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     //控制器对应的key
     NSString *controllerKey = [self controllerKey:url];
@@ -50,6 +76,7 @@
     [RootViewController pushViewController:controller animated:Yes];
 }
 
+
 + (NSString *)controllerKey:(NSString *)url{
     NSString *controllerKey = nil;
     
@@ -57,10 +84,13 @@
         controllerKey = [self scheme:url];
     }else {
         BOOL hasScheme = [tprouterConfig hasScheme] && [[tprouterConfig hasScheme] isEqualToString:[self scheme:url]];
-        
         if (!hasScheme) {
+#ifdef debug
             NSException *exception = [NSException exceptionWithName:@"no such scheme" reason:@"please set right scheme" userInfo:nil];
             @throw exception;
+#else
+            NSLog(@"no such scheme");
+#endif
         }
         controllerKey = [self hostUrl:url];
     }
@@ -116,7 +146,7 @@
 }
 
 + (NSString *)hostUrl:(NSString *)url{
-    return [NSString stringWithFormat:@"%@://%@",[self scheme:url],[self host:url]];
+    return [NSString stringWithFormat:@"%@://%@%@%@",[self scheme:url],[self host:url],[self port:url],[self path:url]];
 }
 
 + (NSString *)scheme:(NSString *)url{
@@ -125,6 +155,16 @@
 
 + (NSString *)host:(NSString *)url{
     return [NSURL URLWithString:url].host;
+}
+
++ (NSString *)port:(NSString *)url{
+    if ([url containsString:@":"]) {
+        return [NSString stringWithFormat:@":%@",[NSURL URLWithString:url].port];
+    }
+    return [NSString stringWithFormat:@"%@",[NSURL URLWithString:url].port];
+}
++ (NSString *)path:(NSString *)url{
+    return [NSURL URLWithString:url].path;
 }
 
 #pragma mark - instance methods
@@ -145,7 +185,7 @@
     
     NSString *url = [URL stringByReplacingOccurrencesOfString:@" " withString:@""];
     
-    url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    url = [url stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     //控制器对应的key
     NSString *controllerKey = [self controllerKey:url];
     
@@ -163,8 +203,12 @@
         BOOL hasScheme = [tprouterConfig hasScheme] && [[tprouterConfig hasScheme] isEqualToString:[self scheme:url]];
         
         if (!hasScheme) {
+#ifdef debug
             NSException *exception = [NSException exceptionWithName:@"no such scheme" reason:@"please set right scheme" userInfo:nil];
             @throw exception;
+#else
+            NSLog(@"no such scheme");
+#endif
         }
         controllerKey = [self hostUrl:url];
     }
@@ -220,7 +264,8 @@
 }
 
 - (NSString *)hostUrl:(NSString *)url{
-    return [NSString stringWithFormat:@"%@://%@",[self scheme:url],[self host:url]];
+
+    return [NSString stringWithFormat:@"%@://%@%@%@",[self scheme:url],[self host:url],[self port:url],[self path:url]];
 }
 
 - (NSString *)scheme:(NSString *)url{
@@ -231,6 +276,16 @@
 - (NSString *)host:(NSString *)url{
     
     return [NSURL URLWithString:url].host;
+}
+
+- (NSString *)port:(NSString *)url{
+    if ([url containsString:@":"]) {
+        return [NSString stringWithFormat:@":%@",[NSURL URLWithString:url].port];
+    }
+    return [NSString stringWithFormat:@"%@",[NSURL URLWithString:url].port];
+}
+- (NSString *)path:(NSString *)url{
+    return [NSURL URLWithString:url].path;
 }
 
 @end

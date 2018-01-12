@@ -43,6 +43,14 @@
 + (void)pushViewControllerWithNativeURL:(NSString *)URL withParams:(NSDictionary *)param animated:(BOOL)Yes withBlock:(reverseBlock)block;
 
 /**
+ 跳转外部URL
+ 
+ @param URL 跳转协议
+ @param Yes 是否动画
+ */
++ (void)presentViewControllerWithRemoteURL:(NSString *)URL animated:(BOOL)Yes;
+
+/**
  用户指定的跳转根控制器,本地URL
 
  @param URL 跳转协议
